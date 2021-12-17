@@ -56,14 +56,6 @@ function findSmallestUnvisitedNode() {
             minValueProp = unvisited[x];
         }
     }
-    // const filterdDistances = [...distances].filter(([k, v]) => v < Infinity);
-    // unvisited.filter(v => filterdDistances.find(value => value[0] === v)).forEach(entry => {
-    //     const prop = entry;
-    //     if (distances.get(prop)! < minValue) {
-    //         minValue = distances.get(prop)!;
-    //         minValueProp = prop;
-    //     }
-    // });
 
     return minValueProp;
 }
@@ -148,7 +140,7 @@ function main() {
         procesDistance(currentNode);
     }
 
-    console.log(distances);
+    console.log(distances.get('499,499'));
 
 
 }
