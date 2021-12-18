@@ -9,6 +9,13 @@ function readFile(): string[] {
     return input;
 }
 
+function readCheck(): string[] {
+    const stringInput = readFileSync('check.txt', 'utf-8');
+    const input = stringInput.split('\r\n');
+    input.pop();
+    return input;
+}
+
 interface Risk {
     coord: string,
     value: number,
@@ -68,6 +75,7 @@ function printmatrix() {
 }
 
 let matrix: number[][] = [];
+const cmatrix: number[][] = [];
 
 function main() {
     const lines = readFile();
@@ -113,7 +121,26 @@ function main() {
         }
     }
 
-    // printmatrix();
+
+    if (!prod) {
+        printmatrix();
+        const clines = readCheck();
+
+        clines.forEach((line, lindex) => {
+            cmatrix.push([]);
+            cmatrix[lindex] = line.split('').map(value => +value);
+        });
+
+        console.log(JSON.stringify(cmatrix) === JSON.stringify(matrix));
+
+        for (let y = 0; y < 50; y++) {
+            for (let x = 0; x < 50; x++) {
+                if (matrix[y][x] !== cmatrix[y][x]) {
+                    console.log(y, x, matrix[y][x], cmatrix[y][x]);
+                }
+            }
+        }
+    }
 
     matrix.forEach((line, lindex) => {
         line.forEach((value, vindex) => {
@@ -140,6 +167,7 @@ function main() {
         procesDistance(currentNode);
     }
 
+    console.log(distances.get('49,49'));
     console.log(distances.get('499,499'));
 
 

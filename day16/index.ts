@@ -107,11 +107,10 @@ function processOutput(op: string, times = Infinity): any[] {
         switch (id) {
             case 4:
                 while (op.startsWith('1')) {
-                    message += op.substring(0, 5);
-                    values.push(parseInt(message, 2));
+                    message += op.substring(1, 5);
                     op = op.substring(5);
                 }
-                message += op.substring(0, 5);
+                message += op.substring(1, 5);
                 values.push(parseInt(message, 2));
                 op = op.substring(5);
                 // console.log(version, id, parseInt(message, 2));
